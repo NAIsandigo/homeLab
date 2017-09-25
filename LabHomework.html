@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LAB 1</title>
+		<style>
+		
+		th, td{
+			border-style: solid;
+		}
+		
+		th{
+			background-color: lightgray;
+		}
+		td{
+			background-color: cream;
+		}
+		</style>
+	</head>
+	<body>
+	
+		<header>
+		
+		<h1>This page has data on different motorcycles</h1>
+		</header>
+		
+			<div id ="info"></div>
+		
+		<footer>
+		</footer>
+		<script src="Lab1.js"></script>
+		<script>
+		var info ="";
+		var info = "<table>" + "<tr>" +"<th> Manufacturer </th>" + "<th> Model </th>" + "<th> Engine Size </th>" + "<th> Country </th>" + "<th> Production Start Year </th>" + "<th> Production End Year </th>" + "</tr>"; 
+		for(var x = 0; x < motorbikes.length; x++){
+			var Manufacturer = motorbikes[x].Name;
+			var Model = motorbikes[x].modelName;
+			var EngineSize = motorbikes[x].engineSize;
+			var Country = motorbikes[x].countryOfOrigin;
+			var StartingYear = motorbikes[x].productionStart;
+			var EndingYear = motorbikes[x].productionEnd;
+
+			info += '<tr>' + '<td>' + Manufacturer + '</td>' + '<td>' + Model + '</td>' + '<td>' + EngineSize + '</td>' + '<td>' + Country + '</td>' + '<td>' + StartingYear + '</td>' + '<td>' + EndingYear + '</td>' +'</tr>';
+		
+		}
+		info += "</table>";
+		document.getElementById('info').innerHTML = info;
+		</script>
+					<canvas id="myChart" width="750" height="400" style="border:1px solid #000;"></canvas>
+		<script>
+			var ctx = document.getElementById("myChart").getContext('2d');
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: 
+						(function(){
+							var arr = [];
+							for(var i=0; i<5; i++){
+								arr.push(motorbikes[x].Name);
+								arr.push(motorbikes[x].modelName);
+								arr.push(motorbikes[x].productionStart);
+								arr.push(motorbikes[x].productionEnd);
+							
+							
+							}
+							return arr;
+						})
+					
+						datasets: [{
+						label: "Average Length of Production",
+						data:[motorbikes[0].Name, motorbikes[1].modelName, motorbikes[4].productionStart, motorbikes[5].productionEnd],
+						backgroundColor:[
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255,99,132,1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero:true
+							}
+						}]
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<!--average production length by decade. turn into a graph--> 
